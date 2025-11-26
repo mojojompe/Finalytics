@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Settings - Stock Market Analysis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#136dec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101822",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="flex flex-1">
+<!-- Side Navigation Bar -->
+<aside class="flex flex-col w-64 p-4 bg-white/5 border-r border-white/10">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3 p-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAwMu1nbdz5gkJY2Pjmh51YleVz-MGor9u6Opsj2ertwh8H9X__trjq8zuq92Xkyzg4v6tq7AZ5K1ow0I035scxjTDuWaQ8Gu6SqxfU-3-mY0lV57_T6sgZ02roYGLHsV-Ytl8cgg1ASnDBJheowT4oTJcS9vo8xtvjMqgmmfJSGfd2AF_r4nRVMXr7jk8Y9Uiqjz9dZ7qOdmhI01Uu3ed6-vhtFUd9XKYC2-JCrpDjDip5k1f3HqAwk8dlLq_qhWTdTQ7oOSxejeWU");'></div>
+<div class="flex flex-col">
+<h1 class="text-white text-base font-semibold leading-normal">Alex Doe</h1>
+<p class="text-gray-400 text-sm font-normal leading-normal">alex.doe@email.com</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 text-primary" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-sm font-medium leading-normal">Profile</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:bg-white/10 hover:text-white transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">tune</span>
+<p class="text-sm font-medium leading-normal">Preferences</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:bg-white/10 hover:text-white transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<p class="text-sm font-medium leading-normal">Data Display</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:bg-white/10 hover:text-white transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">lock</span>
+<p class="text-sm font-medium leading-normal">Security</p>
+</a>
+</nav>
+</div>
+<div class="mt-auto flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:bg-white/10 hover:text-white transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<p class="text-sm font-medium leading-normal">Log Out</p>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 p-8">
+<div class="max-w-4xl mx-auto">
+<!-- Page Heading -->
+<div class="flex flex-wrap justify-between gap-3 mb-8">
+<p class="text-white text-4xl font-black leading-tight tracking-[-0.033em]">Settings</p>
+</div>
+<!-- Profile Section -->
+<div class="bg-white/5 rounded-xl border border-white/10 mb-8">
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-6 py-4 border-b border-white/10">Personal Details</h2>
+<div class="p-6">
+<div class="flex flex-col md:flex-row gap-6">
+<label class="flex flex-col min-w-40 flex-1">
+<p class="text-gray-300 text-sm font-medium leading-normal pb-2">First Name</p>
+<input class="form-input w-full resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-white/20 bg-white/5 h-12 placeholder:text-gray-500 px-4 text-sm font-normal leading-normal" placeholder="Alex" value="Alex"/>
+</label>
+<label class="flex flex-col min-w-40 flex-1">
+<p class="text-gray-300 text-sm font-medium leading-normal pb-2">Last Name</p>
+<input class="form-input w-full resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-white/20 bg-white/5 h-12 placeholder:text-gray-500 px-4 text-sm font-normal leading-normal" placeholder="Doe" value="Doe"/>
+</label>
+</div>
+<div class="mt-6">
+<label class="flex flex-col">
+<p class="text-gray-300 text-sm font-medium leading-normal pb-2">Email</p>
+<input class="form-input w-full resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-white/20 bg-white/5 h-12 placeholder:text-gray-500 px-4 text-sm font-normal leading-normal" placeholder="alex.doe@email.com" type="email" value="alex.doe@email.com"/>
+</label>
+</div>
+</div>
+<div class="flex justify-end p-4 bg-white/5 rounded-b-xl border-t border-white/10">
+<button class="px-4 py-2 text-sm font-semibold text-white bg-primary rounded-lg hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-dark">Save Changes</button>
+</div>
+</div>
+<!-- Data Display Section -->
+<div class="bg-white/5 rounded-xl border border-white/10 mb-8">
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-6 py-4 border-b border-white/10">Data Display &amp; Chart Settings</h2>
+<div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<p class="text-gray-300 text-sm font-medium leading-normal pb-3">Default Chart Type</p>
+<div class="flex gap-4">
+<label class="flex items-center gap-2 cursor-pointer">
+<input checked="" class="form-radio bg-white/5 border-white/20 text-primary focus:ring-primary focus:ring-offset-background-dark" name="chartType" type="radio"/>
+<span class="text-white text-sm">Candlestick</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="form-radio bg-white/5 border-white/20 text-primary focus:ring-primary focus:ring-offset-background-dark" name="chartType" type="radio"/>
+<span class="text-white text-sm">Line</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="form-radio bg-white/5 border-white/20 text-primary focus:ring-primary focus:ring-offset-background-dark" name="chartType" type="radio"/>
+<span class="text-white text-sm">Bar</span>
+</label>
+</div>
+</div>
+<div>
+<label class="flex flex-col">
+<p class="text-gray-300 text-sm font-medium leading-normal pb-2">Data Refresh Rate</p>
+<select class="form-select w-full resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-white/20 bg-white/5 h-12 placeholder:text-gray-500 px-4 text-sm font-normal leading-normal">
+<option>1 Second</option>
+<option selected="">5 Seconds</option>
+<option>15 Seconds</option>
+<option>30 Seconds</option>
+</select>
+</label>
+</div>
+</div>
+<div class="flex justify-end p-4 bg-white/5 rounded-b-xl border-t border-white/10">
+<button class="px-4 py-2 text-sm font-semibold text-white bg-primary rounded-lg hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-dark">Save Changes</button>
+</div>
+</div>
+<!-- Account Management -->
+<div class="bg-white/5 rounded-xl border border-red-500/30">
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-6 py-4 border-b border-red-500/30">Account Management</h2>
+<div class="p-6 flex justify-between items-center">
+<div>
+<p class="text-white font-medium">Delete your account</p>
+<p class="text-gray-400 text-sm mt-1">Permanently remove your account and all of your data. This action is not reversible.</p>
+</div>
+<button class="px-4 py-2 text-sm font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-background-dark">Delete Account</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

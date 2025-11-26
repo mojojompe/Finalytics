@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stock Market Analysis Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24;
+            font-size: 24px;
+        }
+    </style>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#007BFF",
+              "background-light": "#f6f7f8",
+              "background-dark": "#121826",
+              "component-dark": "#1A202C",
+              "text-light": "#E5E7EB",
+              "text-dark-secondary": "#92a9c9",
+              "positive": "#10B981",
+              "negative": "#EF4444"
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background-dark font-display">
+<div class="flex min-h-screen w-full">
+<!-- Persistent Sidebar -->
+<aside class="flex w-72 flex-col bg-component-dark p-4 border-r border-gray-700/50">
+<!-- User Profile -->
+<div class="flex items-center gap-3 mb-6">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD0yDtbg_ZW1AuSerRqqq8Hl4sX-B_IMXXwx3cZA07XGiU6zVmtVM8CmRH79_zIuLr30M0EOKZLGQ4ja7LYqLLalCFW63cAE0XxBA5CXUAD0wi0kw7jP8uTT37vYsiXp_92iNFSU66wHTg0Cb50QFa2zRnPuRhBHIhSlZgnKw8Ucn0Kdh1dsH6O2IYTZWwzd6eypRs8PMbvMq3GLKOlhhPPNfloZz4TfNOPsx40Vb5B5MVpPVOFF1bBgONxMJp1CbFn585XnCbtDJpW");'></div>
+<div class="flex flex-col">
+<h1 class="text-text-light text-base font-medium leading-normal">Alex Doe</h1>
+<p class="text-text-dark-secondary text-sm font-normal leading-normal">alex.doe@email.com</p>
+</div>
+</div>
+<!-- Navigation -->
+<nav class="flex flex-col gap-2 mb-6">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 text-primary" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-light hover:bg-white/10 rounded-lg" href="#">
+<span class="material-symbols-outlined">newspaper</span>
+<p class="text-sm font-medium leading-normal">News</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-light hover:bg-white/10 rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-sm font-medium leading-normal">Settings</p>
+</a>
+</nav>
+<div class="flex-grow flex flex-col">
+<!-- Search Bar -->
+<div class="mb-4">
+<label class="flex flex-col min-w-40 h-12 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-text-dark-secondary flex bg-background-dark items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-text-light focus:outline-0 focus:ring-0 border-none bg-background-dark h-full placeholder:text-text-dark-secondary px-4 text-sm font-normal leading-normal" placeholder="Search ticker..."/>
+</div>
+</label>
+</div>
+<!-- Watchlist -->
+<h2 class="text-text-light text-lg font-bold mb-2 px-2">Watchlist</h2>
+<div class="flex-grow overflow-y-auto pr-1">
+<div class="flex flex-col gap-1">
+<!-- List Item 1 -->
+<div class="flex items-center gap-4 bg-transparent px-2 py-2 justify-between rounded-lg hover:bg-white/5 cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="text-text-light flex items-center justify-center rounded-lg bg-background-dark shrink-0 size-10">
+<span class="material-symbols-outlined text-positive">trending_up</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-text-light text-base font-medium leading-normal line-clamp-1">AAPL</p>
+<p class="text-text-dark-secondary text-sm font-normal leading-normal line-clamp-2">Apple Inc.</p>
+</div>
+</div>
+<div class="shrink-0 text-right">
+<p class="text-text-light text-base font-normal leading-normal">$190.45</p>
+<p class="text-positive text-sm">+1.33%</p>
+</div>
+</div>
+<!-- List Item 2 -->
+<div class="flex items-center gap-4 bg-transparent px-2 py-2 justify-between rounded-lg hover:bg-white/5 cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="text-text-light flex items-center justify-center rounded-lg bg-background-dark shrink-0 size-10">
+<span class="material-symbols-outlined text-negative">trending_down</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-text-light text-base font-medium leading-normal line-clamp-1">GOOGL</p>
+<p class="text-text-dark-secondary text-sm font-normal leading-normal line-clamp-2">Alphabet Inc.</p>
+</div>
+</div>
+<div class="shrink-0 text-right">
+<p class="text-text-light text-base font-normal leading-normal">$177.85</p>
+<p class="text-negative text-sm">-0.52%</p>
+</div>
+</div>
+<!-- List Item 3 -->
+<div class="flex items-center gap-4 bg-transparent px-2 py-2 justify-between rounded-lg hover:bg-white/5 cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="text-text-light flex items-center justify-center rounded-lg bg-background-dark shrink-0 size-10">
+<span class="material-symbols-outlined text-positive">trending_up</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-text-light text-base font-medium leading-normal line-clamp-1">MSFT</p>
+<p class="text-text-dark-secondary text-sm font-normal leading-normal line-clamp-2">Microsoft Corp.</p>
+</div>
+</div>
+<div class="shrink-0 text-right">
+<p class="text-text-light text-base font-normal leading-normal">$445.70</p>
+<p class="text-positive text-sm">+2.11%</p>
+</div>
+</div>
+<!-- List Item 4 -->
+<div class="flex items-center gap-4 bg-transparent px-2 py-2 justify-between rounded-lg hover:bg-white/5 cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="text-text-light flex items-center justify-center rounded-lg bg-background-dark shrink-0 size-10">
+<span class="material-symbols-outlined text-negative">trending_down</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-text-light text-base font-medium leading-normal line-clamp-1">AMZN</p>
+<p class="text-text-dark-secondary text-sm font-normal leading-normal line-clamp-2">Amazon.com, Inc.</p>
+</div>
+</div>
+<div class="shrink-0 text-right">
+<p class="text-text-light text-base font-normal leading-normal">$183.63</p>
+<p class="text-negative text-sm">-1.04%</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 p-8 bg-background-dark overflow-y-auto">
+<div class="max-w-7xl mx-auto">
+<!-- Header Card -->
+<div class="flex flex-wrap justify-between items-center gap-4 mb-8">
+<div class="flex min-w-72 flex-col gap-2">
+<p class="text-text-light text-4xl font-black leading-tight tracking-[-0.033em]">Apple Inc. (AAPL)</p>
+<div class="flex items-baseline gap-4">
+<p class="text-text-light text-2xl font-semibold">$190.45</p>
+<p class="text-positive text-lg font-medium">+2.50 (+1.33%) Today</p>
+</div>
+</div>
+<button class="bg-primary text-white font-medium text-sm px-5 py-2.5 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined">add_circle</span>
+                        Add to Watchlist
+                    </button>
+</div>
+<!-- Main Grid -->
+<div class="grid grid-cols-3 grid-rows-3 gap-6 h-[75vh]">
+<!-- Main Chart Widget -->
+<div class="col-span-2 row-span-2 bg-component-dark p-6 rounded-xl flex flex-col">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-text-light font-bold text-lg">Price Chart</h3>
+<div class="flex gap-1 bg-background-dark p-1 rounded-lg">
+<button class="px-3 py-1 text-xs text-text-light font-medium rounded-md bg-primary/30">1D</button>
+<button class="px-3 py-1 text-xs text-text-dark-secondary font-medium rounded-md hover:bg-white/10">5D</button>
+<button class="px-3 py-1 text-xs text-text-dark-secondary font-medium rounded-md hover:bg-white/10">1M</button>
+<button class="px-3 py-1 text-xs text-text-dark-secondary font-medium rounded-md hover:bg-white/10">6M</button>
+<button class="px-3 py-1 text-xs text-text-dark-secondary font-medium rounded-md hover:bg-white/10">1Y</button>
+<button class="px-3 py-1 text-xs text-text-dark-secondary font-medium rounded-md hover:bg-white/10">MAX</button>
+</div>
+</div>
+<div class="flex-grow">
+<img class="w-full h-full object-cover rounded-lg" data-alt="A candlestick chart showing stock price movement over time. Green and red bars indicate price changes." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHyZuT41zCaHTgXsT32ANCYuogYCoLMAToBuWUgt33voEOlc1gLHffZrBd69tEeVJCgCX-We33Pci8iplO5N8gqE673Am1_T_fMhIaGGCg9IFRIk75DAKAGz2DWd-hJDtQWZAVI2SR0LGVHNhLn6D8wYCSSpi2vAVDW5gGNcTd4MzzK7sh4gktm74z6RQDdSJxljUSVuv3qJB5JnXUq2v43ZgSAqfb8iPjPKyleuCnyrBVt583AaDXdBoKMLf9Y2cl2rQGHjBYar5M"/>
+</div>
+</div>
+<!-- AI Prediction Widget -->
+<div class="col-span-1 row-span-2 bg-component-dark p-6 rounded-xl flex flex-col">
+<h3 class="text-text-light font-bold text-lg mb-4">LSTM Price Prediction</h3>
+<div class="flex-grow mb-4">
+<img class="w-full h-full object-cover rounded-lg" data-alt="A line chart overlaying historical price with a dotted line for AI predicted price trajectory and shaded confidence intervals." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKSSJ43cDFJOulA9kRmvgI_JNO1kPI5ATiOhvf-rEuHYyW1lbXFaTupOZi9OBEit1DMwtuDafqK6o7cO6nIfFLjnLlLbWwGz2QN5dDpcFIAqR0oaICJZu13SbfVlBOk_U0HvuN8MS_3ZseSgX8wcs01_wXWcu_dFTrCruSK5aBQ9xCEFUYCtsywyYPidojLS74-CU4ORvnzVbZ6EmhsoKnMY6oMCud1udugnClMuoyejzk6SeFjsuUQ4t7amOEuqYlXh_JgQ2sWrvS"/>
+</div>
+<div class="text-center bg-background-dark p-3 rounded-lg">
+<p class="text-text-dark-secondary text-sm">Predicted 30-day target:</p>
+<p class="text-text-light text-xl font-bold">$205.75</p>
+</div>
+</div>
+<!-- Market Sentiment Widget -->
+<div class="col-span-1 row-span-1 bg-component-dark p-6 rounded-xl flex flex-col">
+<h3 class="text-text-light font-bold text-lg mb-4">Market Sentiment</h3>
+<div class="flex-grow flex items-center justify-center">
+<div class="relative w-40 h-40">
+<svg class="w-full h-full" viewbox="0 0 36 36">
+<path class="stroke-current text-gray-700" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3"></path>
+<path class="stroke-current text-positive" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-dasharray="70, 100" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-3xl font-bold text-text-light">70%</span>
+<span class="text-sm text-positive">Bullish</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Key Stats Widget -->
+<div class="col-span-1 row-span-1 bg-component-dark p-6 rounded-xl flex flex-col">
+<h3 class="text-text-light font-bold text-lg mb-4">Key Stats &amp; Ratios</h3>
+<div class="grid grid-cols-2 gap-x-6 gap-y-4 text-sm flex-grow">
+<div class="flex justify-between border-b border-gray-700/50 pb-1">
+<span class="text-text-dark-secondary">Market Cap</span>
+<span class="text-text-light font-medium">3.1T</span>
+</div>
+<div class="flex justify-between border-b border-gray-700/50 pb-1">
+<span class="text-text-dark-secondary">P/E Ratio</span>
+<span class="text-text-light font-medium">32.5</span>
+</div>
+<div class="flex justify-between border-b border-gray-700/50 pb-1">
+<span class="text-text-dark-secondary">EPS</span>
+<span class="text-text-light font-medium">6.43</span>
+</div>
+<div class="flex justify-between border-b border-gray-700/50 pb-1">
+<span class="text-text-dark-secondary">Div Yield</span>
+<span class="text-text-light font-medium">0.51%</span>
+</div>
+<div class="flex justify-between">
+<span class="text-text-dark-secondary">52W High</span>
+<span class="text-text-light font-medium">199.62</span>
+</div>
+<div class="flex justify-between">
+<span class="text-text-dark-secondary">52W Low</span>
+<span class="text-text-light font-medium">164.08</span>
+</div>
+</div>
+</div>
+<!-- Real-time Feed Widget -->
+<div class="col-span-1 row-span-1 bg-component-dark p-6 rounded-xl flex flex-col">
+<h3 class="text-text-light font-bold text-lg mb-4">Real-time Feed</h3>
+<div class="flex-grow space-y-3 overflow-y-auto text-sm">
+<div class="flex items-center gap-3">
+<span class="text-positive font-mono text-xs">14:30:05</span>
+<span class="text-text-light">BUY</span>
+<span class="text-text-light font-medium">150 @ 190.46</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-negative font-mono text-xs">14:30:02</span>
+<span class="text-text-light">SELL</span>
+<span class="text-text-light font-medium">500 @ 190.44</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-positive font-mono text-xs">14:29:58</span>
+<span class="text-text-light">BUY</span>
+<span class="text-text-light font-medium">200 @ 190.45</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-positive font-mono text-xs">14:29:55</span>
+<span class="text-text-light">BUY</span>
+<span class="text-text-light font-medium">100 @ 190.45</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

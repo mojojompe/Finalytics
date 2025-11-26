@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MarketPulse - Personalized News Feed</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#136dec",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101822",
+              "positive": "#2EBD85",
+              "negative": "#F6465D",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 bg-background-light/80 px-4 py-3 backdrop-blur-sm dark:bg-background-dark/80 sm:px-6 md:px-10">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-black dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M6 6H42L36 24L42 42H6L12 24L6 6Z" fill="currentColor"></path></svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">MarketPulse</h2>
+</div>
+<nav class="hidden items-center gap-9 lg:flex">
+<a class="text-sm font-medium leading-normal text-slate-600 dark:text-slate-400" href="#">Dashboard</a>
+<a class="text-sm font-medium leading-normal text-slate-600 dark:text-slate-400" href="#">Charts</a>
+<a class="text-sm font-medium leading-normal text-slate-600 dark:text-slate-400" href="#">Watchlist</a>
+<a class="text-sm font-medium leading-normal text-primary" href="#">News</a>
+</nav>
+</div>
+<div class="flex flex-1 items-center justify-end gap-4 md:gap-6">
+<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-slate-500 dark:text-slate-400 flex border-none bg-slate-200 dark:bg-slate-800 items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-black dark:text-white focus:outline-0 focus:ring-0 border-none bg-slate-200 dark:bg-slate-800 focus:border-none h-full placeholder:text-slate-500 dark:placeholder:text-slate-400 px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search news..." value=""/>
+</div>
+</label>
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 aspect-square">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBOUeRCU8VqY1mG4u1FhHMptBTEyn22qtqOSydH0ekzTfxXWBvdWzs4t-dkex6lN7OVYYeKANZxV_Lljw3hzWcfi28UAJk4JFerJkjE9jg-bCu080ABW2wi2kKjPFpnxqY6zItyi7KThycBVUC2RR83lDvAsMkFR1OVSpObLDdIw5K15e181h-EeSw7Qrm21PAg0sD0VgYtmoppMNkv2X79i3ILDUS7mcf5GsseXr-r2Ovl_Y0ZCHXe-6OL4wLoXRSSsGVUoCb0IS32");'></div>
+</div>
+</header>
+<main class="px-4 py-5 sm:px-6 md:px-10">
+<div class="mx-auto flex max-w-7xl flex-col gap-6">
+<!-- PageHeading -->
+<div class="flex flex-wrap items-center justify-between gap-4">
+<p class="text-black dark:text-white text-4xl font-black leading-tight tracking-[-0.033em] min-w-72">Personalized News Feed</p>
+</div>
+<!-- Chips for filtering -->
+<div class="flex flex-wrap items-center gap-3">
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary pl-4 pr-3 text-white">
+<p class="text-sm font-medium leading-normal">All</p>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-200 dark:bg-slate-800 pl-4 pr-3 text-slate-700 dark:text-slate-300">
+<p class="text-sm font-medium leading-normal">My Watchlist</p>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-200 dark:bg-slate-800 pl-4 pr-3 text-slate-700 dark:text-slate-300">
+<p class="text-sm font-medium leading-normal">Tech</p>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-200 dark:bg-slate-800 pl-4 pr-3 text-slate-700 dark:text-slate-300">
+<p class="text-sm font-medium leading-normal">Healthcare</p>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-200 dark:bg-slate-800 pl-4 pr-3 text-slate-700 dark:text-slate-300">
+<p class="text-sm font-medium leading-normal">US Market</p>
+</button>
+<div class="hidden flex-1 justify-end md:flex">
+<button class="flex h-9 items-center justify-center gap-x-2 rounded-lg bg-slate-200 dark:bg-slate-800 px-4 text-slate-700 dark:text-slate-300">
+<p class="text-sm font-medium leading-normal">Most Recent</p>
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+</div>
+</div>
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-6">
+<!-- Left Column (Featured) -->
+<div class="flex flex-col gap-6 lg:col-span-2">
+<!-- SectionHeader -->
+<h2 class="text-black dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] pt-5">Top Stories Today</h2>
+<!-- Large Featured Card -->
+<div class="flex flex-col items-stretch justify-start rounded-xl bg-slate-100 p-4 dark:bg-slate-800/50 @container">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg" data-alt="An abstract image representing global markets with charts and graphs." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAnzhTs722LG8xUJP4ODKZ1xzdfOaCEcBNwFqlZy6oepRw8SDSxXCFLmfh4C73XfgkeJ6hBzYtd2--5YDI0xhtCs5Qn1tQe2h-v2nvkPk9BeFheeuQ8A22j1SG10GetlInjdDhxyOl-8v-NGCZKXh4mkYwKMq1alY-vNiP4C6odKM7ycelHjF55hdw8_DR2-ZKBuJ-jbY3OmOl3FJ57GPNAZoExPayzqkx0f-F8ARUt485KgRppHDHZyqNHv9Vy8eHQRiP0-IxGyCLV");'></div>
+<div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-2 py-4">
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-400">
+<span>$AAPL</span>, <span>$GOOGL</span>
+</div>
+<div class="flex h-5 w-5 items-center justify-center rounded-full bg-positive/20 text-positive">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+</div>
+</div>
+<p class="text-black dark:text-white text-2xl font-bold leading-tight tracking-[-0.015em]">Global Markets Rally as Inflation Fears Subside</p>
+<p class="text-slate-600 dark:text-slate-400 text-base font-normal leading-normal">
+                                        Major indices saw significant gains after the latest CPI report showed a slowdown in inflation, boosting investor confidence across tech and financial sectors.
+                                    </p>
+<div class="flex items-end justify-between gap-3 pt-2">
+<p class="text-slate-500 dark:text-slate-500 text-sm font-normal leading-normal">Bloomberg • 5m ago</p>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-medium leading-normal">
+<span class="truncate">View Article</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Other Stories -->
+<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+<!-- Card 1 -->
+<div class="flex flex-col rounded-xl bg-slate-100 p-4 dark:bg-slate-800/50">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg" data-alt="Image of a pharmaceutical lab for healthcare stock news" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCgTIOMHK5FFNY2JWYyIgZ46obxssqMaxQXMU_C726GolwfMu1dOnJq9nkurFs459YXVhkhd42q4UaqF9qHdAok4iCLmlZrcHfIqCnlTrFFpykgL7pkDHpDzMPsUbbBmucWbyX2xd4_iOVmewQZfyY-O4FqwnDQByAMQj5CJYmazP3tPogoQNrxgtpbNyqtJM92sr1lRCstOM9Z1-PSQmX9khSEvLJPoABsZNCTTxFI0HYa8ekl233A7LL8oTBjGTXrvTT8Lths3zOY");'></div>
+<div class="flex flex-col gap-2 pt-4">
+<div class="flex items-center gap-2">
+<span class="text-sm font-medium text-slate-600 dark:text-slate-400">$PFE</span>
+<div class="flex h-5 w-5 items-center justify-center rounded-full bg-positive/20 text-positive">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+</div>
+</div>
+<p class="text-black dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">New Drug Trial Shows Promising Results, Healthcare Stocks Surge</p>
+<p class="text-slate-500 dark:text-slate-500 text-sm font-normal leading-normal">Reuters • 22m ago</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex flex-col rounded-xl bg-slate-100 p-4 dark:bg-slate-800/50">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg" data-alt="Image of electric vehicle charging station for automotive stock news" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDWOq1QqfGbb9hpkPWRAjMdSB35GRnkHyJlMdbnfAIU0PNOlBTJe1F2YAc4vGZZuNGTdpdKsKBRz5tcTkmZ0Gu4ssf7gRbLuKoIQv1ae5IOttK-VvBaZ_12wADyaBRtrWf9z2J3XGWmkZHREwvB3wpjkpj6ik0oNRPTZjQ_vIVZd8Ry8eAS26_xZpXyEllok7RMfbl9ZIt5TfP18wyrjiBO5-it_Wqn_Gosf_10nZzVNnIbGd2XiXIyg4CUPIMLPWi-nDhCCPKgMIoe");'></div>
+<div class="flex flex-col gap-2 pt-4">
+<div class="flex items-center gap-2">
+<span class="text-sm font-medium text-slate-600 dark:text-slate-400">$TSLA</span>
+<div class="flex h-5 w-5 items-center justify-center rounded-full bg-negative/20 text-negative">
+<span class="material-symbols-outlined text-sm">trending_down</span>
+</div>
+</div>
+<p class="text-black dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">EV Sector Faces Headwinds Amidst Supply Chain Concerns</p>
+<p class="text-slate-500 dark:text-slate-500 text-sm font-normal leading-normal">Wall Street Journal • 45m ago</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column (Recent News) -->
+<div class="flex flex-col gap-6">
+<h2 class="text-black dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] pt-5">More News</h2>
+<div class="flex flex-col gap-4">
+<!-- Small News Item 1 -->
+<div class="flex items-start gap-4 rounded-xl bg-slate-100 p-4 dark:bg-slate-800/50">
+<div class="w-24 shrink-0 bg-center bg-no-repeat aspect-square bg-cover rounded-lg" data-alt="Abstract image representing federal reserve" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCN5e9l8Ifw35OMi8ElvDCPMz08cL_jjcNE9MOT-gkNjip0UZw3EFQvmdV2Di5k3kCD3bOZ7s7uHo5F_Sb_yOScPso2HaM5_TPj2iMxYelq7tDs0MJvb2q1tcCh7kl9LKNu9XRa7VEp-DoNvYqg-__gigK1XC3iQki7uVwm2Q3ffJ2AFNWq-LQt2Q866yJqHbw0Y4nNC2fXXJ5PaQaQ33Wq7Amcy6GLQoqEADpNv5uyS0Y4tfqBpqFPZ_2FDnQrGdrsCAeFYiysh2ew");'></div>
+<div class="flex flex-col gap-1">
+<p class="text-black dark:text-white text-base font-bold leading-tight">Fed Signals Potential Rate Hike Pause in Coming Months</p>
+<p class="text-slate-500 dark:text-slate-500 text-sm">CNBC • 1h ago</p>
+</div>
+</div>
+<!-- Small News Item 2 -->
+<div class="flex items-start gap-4 rounded-xl bg-slate-100 p-4 dark:bg-slate-800/50">
+<div class="w-24 shrink-0 bg-center bg-no-repeat aspect-square bg-cover rounded-lg" data-alt="Logo of a major tech company" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCCRiZYCaygnbiqaLgTc-IWds_zwWFeeyCPBkwXqs5Nl4tGRKJIofHR1XjVuperWKS3f9_-5qNMKe1TDH0u1MjSpI4NmvcgKeJ0YTPLzvkldFAIQ2ZsVsDSKVjlUFInhGqH-4eEGOmHCBdy6_jphv18oOoA8GroMAItQWvsPc46xAAnhRltVU58iJcW23cpuzBIWCW5j5mFMDsqT8sCHXhyBkYLiNEBkpH8MpbXxFcjiScvMMWZKeZqTy5jHnpEV4n2L_rl2E8l7eCD");'></div>
+<div class="flex flex-col gap-1">
+<p class="text-black dark:text-white text-base font-bold leading-tight">$MSFT Unveils New AI-Powered Enterprise Solutions</p>
+<p class="text-slate-500 dark:text-slate-500 text-sm">TechCrunch • 2h ago</p>
+</div>
+</div>
+<!-- Small News Item 3 -->
+<div class="flex items-start gap-4 rounded-xl bg-slate-100 p-4 dark:bg-slate-800/50">
+<div class="w-24 shrink-0 bg-center bg-no-repeat aspect-square bg-cover rounded-lg" data-alt="Oil rigs in a field representing energy sector" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAUJrDZaad7FtojhYPq4UjFKNb_-tgUMDo-TtLS0Jg67moHYtchFGZIEafidClTVljGKrC_UbfbR9-KtZr9qovS_1IABgaIVGUyMpsn2IZV_UjWUYaiX3PwCx_5XJWcoYPWDlRgP7Pv7PNLW9tIqR2n5Mma9pkfsqrJNbpOzsc1913ar9FJLot2QgNkJtgo5uXpmiFEKzcDbZbvxHivFOD88oaTd8zsdR1pi528TnUMI1Zws5j_OBeGzFQzFLfZQixPqwIQ437egX_X");'></div>
+<div class="flex flex-col gap-1">
+<p class="text-black dark:text-white text-base font-bold leading-tight">Energy Sector Volatility Increases as OPEC+ Discusses Cuts</p>
+<p class="text-slate-500 dark:text-slate-500 text-sm">MarketWatch • 3h ago</p>
+</div>
+</div>
+<!-- Small News Item 4 -->
+<div class="flex items-start gap-4 rounded-xl bg-slate-100 p-4 dark:bg-slate-800/50">
+<div class="w-24 shrink-0 bg-center bg-no-repeat aspect-square bg-cover rounded-lg" data-alt="Abstract image of digital currency" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC_p9FIUcmrEXfMSRRAqlPoeXCn5sU34pmdUZY8k90luTI35M7Q8blPYXNmNP3KItXJ2K0nb6NAjEuYIG9RG0foqB7fe6TBoCAeAnto-Ira4riHepxarRNigrZO9W1GdsH8sZrCazY5tAZVIY90C87rlLNpu0glnqnRNa2wxPbPmK8WaJgYssSzGKCfG13sq_96xy7LjAjT67V6sVEntlUYqViJ1LqF7Fo7opmduvtEixpMzi2p2g2lGZtuCF84MC77ZLRYR5SgUmlr");'></div>
+<div class="flex flex-col gap-1">
+<p class="text-black dark:text-white text-base font-bold leading-tight">Crypto Markets See Minor Recovery After Weekend Slump</p>
+<p class="text-slate-500 dark:text-slate-500 text-sm">CoinDesk • 4h ago</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

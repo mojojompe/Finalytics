@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Secure Login - Stock Analysis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3498DB",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#1A1A2E",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<div class="relative flex min-h-screen w-full flex-col items-center justify-center overflow-x-hidden antialiased">
+<div class="w-full max-w-5xl rounded-xl bg-white dark:bg-[#2C3E50]/50 shadow-2xl flex overflow-hidden m-4">
+<!-- Left Panel -->
+<div class="hidden md:flex w-1/2 flex-col items-center justify-center p-12 bg-center bg-no-repeat bg-cover relative" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAMMOw4vfDBHECEMJcSY87v3EiT_ACE7Yc7tg0bFB_f-XNTNTGQuBvMLmZki7HuLtDXa_WgoTI5gz4ArLdhrIbp-_Mf_zMi2wsNC2NhXay-QwsanIxXJCO1562Ypon5PVuZOzle1jWROPfEg371S-ClHxYLk1rR9tuX6TgqyxmBRKGdtLc56YEDZoi3qKwkP52T2Rb1-C6kOr5zhrlIMAFl0cOdX9L4vq8_UfhSR6PFNJmdT7QqQwwpBoChokW1Dla_yhHroK6igLlw");'>
+<div class="absolute inset-0 bg-black/60"></div>
+<div class="relative z-10 text-center">
+<h2 class="text-4xl font-black text-white leading-tight tracking-tight">Financelytics</h2>
+<p class="mt-4 text-lg font-medium text-gray-300">Data-Driven Decisions. Simplified.</p>
+</div>
+</div>
+<!-- Right Panel - Login Form -->
+<div class="w-full md:w-1/2 p-8 sm:p-12 flex flex-col justify-center">
+<div class="w-full max-w-md mx-auto">
+<!-- Logo for mobile -->
+<div class="text-center md:hidden mb-8">
+<h2 class="text-3xl font-black text-gray-800 dark:text-white leading-tight tracking-tight">Financelytics</h2>
+</div>
+<!-- PageHeading -->
+<div class="flex flex-col gap-2 mb-8">
+<p class="text-gray-900 dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">Welcome Back</p>
+<p class="text-gray-600 dark:text-gray-400 text-base font-normal leading-normal">Access your AI-powered stock analysis dashboard.</p>
+</div>
+<!-- Form -->
+<form class="flex flex-col gap-y-6">
+<!-- Email Field -->
+<label class="flex flex-col w-full">
+<p class="text-gray-800 dark:text-white text-base font-medium leading-normal pb-2">Email / Username</p>
+<div class="flex w-full flex-1 items-stretch rounded-lg">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-gray-800 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-gray-300 dark:border-[#324867] bg-gray-50 dark:bg-[#192433] focus:border-primary h-14 placeholder:text-gray-500 dark:placeholder:text-[#92a9c9] p-[15px] rounded-r-none border-r-0 pr-2 text-base font-normal leading-normal" placeholder="Enter your email or username" type="email" value=""/>
+<div class="text-gray-400 dark:text-[#92a9c9] flex border border-gray-300 dark:border-[#324867] bg-gray-50 dark:bg-[#192433] items-center justify-center pr-[15px] rounded-r-lg border-l-0">
+<span class="material-symbols-outlined" style="font-size: 24px;">person</span>
+</div>
+</div>
+</label>
+<!-- Password Field -->
+<label class="flex flex-col w-full">
+<p class="text-gray-800 dark:text-white text-base font-medium leading-normal pb-2">Password</p>
+<div class="flex w-full flex-1 items-stretch rounded-lg">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-gray-800 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-gray-300 dark:border-[#324867] bg-gray-50 dark:bg-[#192433] focus:border-primary h-14 placeholder:text-gray-500 dark:placeholder:text-[#92a9c9] p-[15px] rounded-r-none border-r-0 pr-2 text-base font-normal leading-normal" placeholder="Enter your password" type="password" value=""/>
+<div class="text-gray-400 dark:text-[#92a9c9] flex border border-gray-300 dark:border-[#324867] bg-gray-50 dark:bg-[#192433] items-center justify-center pr-[15px] rounded-r-lg border-l-0">
+<span class="material-symbols-outlined" style="font-size: 24px;">visibility</span>
+</div>
+</div>
+</label>
+<!-- Remember Me and Forgot Password -->
+<div class="flex justify-between items-center text-sm">
+<label class="flex gap-x-3 items-center cursor-pointer">
+<input class="h-5 w-5 rounded border-gray-400 dark:border-[#324867] border-2 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-2 focus:ring-offset-0 focus:ring-primary/50 focus:outline-none" type="checkbox"/>
+<p class="text-gray-800 dark:text-white text-base font-normal leading-normal">Remember Me</p>
+</label>
+<a class="font-medium text-primary hover:underline" href="#">Forgot Password?</a>
+</div>
+<!-- Login Button -->
+<button class="flex items-center justify-center h-14 w-full rounded-lg bg-primary text-white text-base font-bold leading-normal transition-all hover:bg-primary/90 active:scale-[0.98]" type="submit">
+                            Login
+                        </button>
+</form>
+</div>
+<!-- Footer Links -->
+<div class="mt-12 text-center text-sm">
+<p class="text-gray-500 dark:text-gray-400">
+<a class="hover:underline" href="#">Terms of Service</a>
+<span class="mx-2">•</span>
+<a class="hover:underline" href="#">Privacy Policy</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+</body></html>

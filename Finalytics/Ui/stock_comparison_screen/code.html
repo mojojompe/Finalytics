@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stock Comparison - Analytica</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3182CE",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101822",
+                        "container-dark": "#1A202C",
+                        "container-light": "#FFFFFF",
+                        "positive": "#48BB78",
+                        "negative": "#F56565",
+                        "neutral": "#92a9c9",
+                        "border-light": "#E2E8F0",
+                        "border-dark": "#2D3748"
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-neutral">
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="w-64 flex-shrink-0 bg-container-light dark:bg-container-dark p-4 border-r border-border-light dark:border-border-dark hidden lg:flex flex-col">
+<div class="flex-grow">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-primary text-3xl">analytics</span>
+<h1 class="text-black dark:text-white text-xl font-bold">Analytica</h1>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar with an abstract colorful background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAzFc_wWb7Jx8zZV7ESpritsT1VU3V_tJSb_XBWaq3dKP9OEoXSZFMdTXDCTiIlry9rpmUEjJbOUwwkzHdZuXKJRqzJLvXe7chEYGgUooW_vc5r9z2TR1Zt_LMLWbNq8wNNjRgg4pfT7tVQJK-5svNJMv7-hixZzV1YCtLWoF7qICfBPuNgbO7CmHTqdco9_hXf9Al95tGk9DAuPBf6rObDGp8yTgAFd9YXPDL-n2mxTbrwc9Ni9CpM_hjG5suaQTX0q0REj5i7AdzZ");'></div>
+<div class="flex flex-col">
+<h2 class="text-black dark:text-white text-base font-medium leading-normal">Alex Doe</h2>
+<p class="text-neutral text-sm font-normal leading-normal">alex.doe@email.com</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 text-black dark:text-white hover:bg-primary/10 rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-black dark:text-white hover:bg-primary/10 rounded-lg" href="#">
+<span class="material-symbols-outlined">pie_chart</span>
+<p class="text-sm font-medium leading-normal">Portfolio</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 text-primary" href="#">
+<span class="material-symbols-outlined">compare_arrows</span>
+<p class="text-sm font-medium leading-normal">Compare</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-black dark:text-white hover:bg-primary/10 rounded-lg" href="#">
+<span class="material-symbols-outlined">trending_up</span>
+<p class="text-sm font-medium leading-normal">Markets</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-black dark:text-white hover:bg-primary/10 rounded-lg" href="#">
+<span class="material-symbols-outlined">newspaper</span>
+<p class="text-sm font-medium leading-normal">News</p>
+</a>
+</nav>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 text-black dark:text-white hover:bg-primary/10 rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-sm font-medium leading-normal">Settings</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-black dark:text-white hover:bg-primary/10 rounded-lg" href="#">
+<span class="material-symbols-outlined">help</span>
+<p class="text-sm font-medium leading-normal">Help</p>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 p-4 sm:p-6 lg:p-8">
+<div class="w-full max-w-7xl mx-auto">
+<!-- PageHeading -->
+<div class="flex flex-wrap justify-between items-start gap-4 mb-6">
+<div class="flex flex-col gap-2">
+<p class="text-black dark:text-white text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">Stock Comparison</p>
+<p class="text-neutral text-base font-normal leading-normal">Compare performance and key metrics of multiple stocks side-by-side.</p>
+</div>
+<div class="flex gap-2">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-gray-200 dark:bg-border-dark text-black dark:text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-gray-300 dark:hover:bg-gray-600">
+<span class="truncate">Export Data</span>
+</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90">
+<span class="truncate">Save Comparison</span>
+</button>
+</div>
+</div>
+<!-- Stock Selection Bar -->
+<div class="bg-container-light dark:bg-container-dark p-4 rounded-xl border border-border-light dark:border-border-dark mb-6">
+<!-- SearchBar -->
+<label class="flex flex-col w-full">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-12">
+<div class="text-neutral flex bg-gray-100 dark:bg-border-dark items-center justify-center pl-4 rounded-l-lg">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-black dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border-none bg-gray-100 dark:bg-border-dark h-full placeholder:text-neutral px-4 pl-2 text-base font-normal leading-normal" placeholder="Search for stocks to compare (e.g., AAPL, GOOGL)..." value=""/>
+</div>
+</label>
+<!-- Chips -->
+<div class="flex flex-wrap gap-3 mt-4">
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 pl-3 pr-2">
+<p class="text-primary text-sm font-medium leading-normal">AAPL</p>
+<button class="text-primary/70 hover:text-primary"><span class="material-symbols-outlined text-base">close</span></button>
+</div>
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 pl-3 pr-2">
+<p class="text-primary text-sm font-medium leading-normal">GOOGL</p>
+<button class="text-primary/70 hover:text-primary"><span class="material-symbols-outlined text-base">close</span></button>
+</div>
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 pl-3 pr-2">
+<p class="text-primary text-sm font-medium leading-normal">MSFT</p>
+<button class="text-primary/70 hover:text-primary"><span class="material-symbols-outlined text-base">close</span></button>
+</div>
+</div>
+</div>
+<!-- Main Comparison Chart -->
+<div class="bg-container-light dark:bg-container-dark p-4 sm:p-6 rounded-xl border border-border-light dark:border-border-dark mb-6">
+<div class="flex flex-wrap justify-between items-center gap-4 mb-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div><p class="text-sm font-medium text-black dark:text-white">AAPL</p>
+<div class="w-3 h-3 rounded-full bg-orange-500 ml-2"></div><p class="text-sm font-medium text-black dark:text-white">GOOGL</p>
+<div class="w-3 h-3 rounded-full bg-teal-500 ml-2"></div><p class="text-sm font-medium text-black dark:text-white">MSFT</p>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1 text-sm rounded-md bg-gray-200 dark:bg-border-dark text-black dark:text-white">1D</button>
+<button class="px-3 py-1 text-sm rounded-md bg-gray-200 dark:bg-border-dark text-black dark:text-white">5D</button>
+<button class="px-3 py-1 text-sm rounded-md bg-gray-200 dark:bg-border-dark text-black dark:text-white">1M</button>
+<button class="px-3 py-1 text-sm rounded-md bg-primary/20 text-primary font-semibold">6M</button>
+<button class="px-3 py-1 text-sm rounded-md bg-gray-200 dark:bg-border-dark text-black dark:text-white">1Y</button>
+<button class="px-3 py-1 text-sm rounded-md bg-gray-200 dark:bg-border-dark text-black dark:text-white">YTD</button>
+<button class="px-3 py-1 text-sm rounded-md bg-gray-200 dark:bg-border-dark text-black dark:text-white">Max</button>
+</div>
+</div>
+<div class="w-full h-96 bg-gray-100 dark:bg-border-dark/50 rounded-lg flex items-center justify-center">
+<img class="w-full h-full object-contain p-4" data-alt="A line chart showing the price performance of three stocks (AAPL, GOOGL, MSFT) over a 6-month period, with distinct colored lines for each stock against a grid background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbABlzokfgdbI3_s_bDtgnScjzhlZF7-M4VYje-5SwVQhN55gZioyEjfM5NGboOeE1xQtbrnSqD1-ppZ_h3X50OXhdXbIsHozuiIeBOflt-AtrbOaRhr_5_L_fOFtrRHvP2kj4R23N8dBekTdnZjiMkuH8zO56lD6Sig7ykkIPUDBjx3_ugGNa4FvUBCdnP1f8ear2tzXMpv8E8VvEXcenOKrqRRygDh1zUDU7XZQ0qUM7ADaVxxS8ABoiGVqbNzLsNUNAtnsumcZT"/>
+</div>
+</div>
+<!-- Data Comparison Grid/Table -->
+<div class="overflow-x-auto">
+<table class="w-full min-w-[800px] text-left">
+<thead>
+<tr class="border-b border-border-light dark:border-border-dark">
+<th class="p-4 text-sm font-semibold text-neutral uppercase tracking-wider w-1/4">Metric</th>
+<th class="p-4 text-sm font-semibold text-black dark:text-white">
+<div class="flex items-center gap-2">AAPL <span class="text-xs text-neutral">Apple Inc.</span></div>
+<div class="text-lg font-bold mt-1 text-positive flex items-center gap-1">$172.25 <span class="text-sm font-medium">+1.54 (0.90%)<span class="material-symbols-outlined text-base">arrow_upward</span></span></div>
+</th>
+<th class="p-4 text-sm font-semibold text-black dark:text-white">
+<div class="flex items-center gap-2">GOOGL <span class="text-xs text-neutral">Alphabet Inc.</span></div>
+<div class="text-lg font-bold mt-1 text-negative flex items-center gap-1">$138.99 <span class="text-sm font-medium">-0.82 (0.59%)<span class="material-symbols-outlined text-base">arrow_downward</span></span></div>
+</th>
+<th class="p-4 text-sm font-semibold text-black dark:text-white">
+<div class="flex items-center gap-2">MSFT <span class="text-xs text-neutral">Microsoft Corp.</span></div>
+<div class="text-lg font-bold mt-1 text-positive flex items-center gap-1">$337.52 <span class="text-sm font-medium">+2.29 (0.68%)<span class="material-symbols-outlined text-base">arrow_upward</span></span></div>
+</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-light dark:divide-border-dark">
+<tr><td class="p-4 font-bold text-black dark:text-white text-base" colspan="4">Key Performance Indicators</td></tr>
+<tr>
+<td class="p-4 text-sm text-neutral">52-Week High</td>
+<td class="p-4 text-sm font-medium text-black dark:text-white">$198.23</td>
+<td class="p-4 text-sm font-medium text-black dark:text-white">$142.82</td>
+<td class="p-4 text-sm font-medium text-black dark:text-white">$366.78</td>
+</tr>
+<tr>
+<td class="p-4 text-sm text-neutral">52-Week Low</td>
+<td class="p-4 text-sm font-medium text-black dark:text-white">$124.17</td>
+<td class="p-4 text-sm font-medium text-black dark:text-white">$83.45</td>
+<td class="p-4 text-sm font-medium text-black dark:text-white">$213.43</td>
+</tr>
+<tr><td class="p-4 font-bold text-black dark:text-white text-base" colspan="4">Fundamental Data</td></tr>
+<tr>
+<td class="p-4 text-sm text-neutral">Market Cap</td>
+<td class="p-4 text-sm font-medium text-black dark:text-white">$2.70T</td>
+<td class="p-4 text-sm font-medium text-black dark:text-white">$1.76T</td>
+<td class="p-4 text-sm font-medium text-black dark:text-white">$2.51T</td>
+</tr>
+<tr>
+<td class="p-4 text-sm text-neutral">P/E Ratio</td>
+<td class="p-4 text-sm font-medium text-black dark:text-white">28.91</td>
+<td class="p-4 text-sm font-medium text-black dark:text-white">26.15</td>
+<td class="p-4 text-sm font-medium text-black dark:text-white">32.78</td>
+</tr>
+<tr>
+<td class="p-4 text-sm text-neutral">EPS</td>
+<td class="p-4 text-sm font-medium text-black dark:text-white">$5.96</td>
+<td class="p-4 text-sm font-medium text-black dark:text-white">$5.31</td>
+<td class="p-4 text-sm font-medium text-black dark:text-white">$10.30</td>
+</tr>
+<tr>
+<td class="p-4 text-sm text-neutral">Dividend Yield</td>
+<td class="p-4 text-sm font-medium text-black dark:text-white">0.56%</td>
+<td class="p-4 text-sm font-medium text-black dark:text-white">-</td>
+<td class="p-4 text-sm font-medium text-black dark:text-white">0.81%</td>
+</tr>
+<tr>
+<td class="p-4 text-sm text-neutral">Beta</td>
+<td class="p-4 text-sm font-medium text-black dark:text-white">1.29</td>
+<td class="p-4 text-sm font-medium text-black dark:text-white">1.08</td>
+<td class="p-4 text-sm font-medium text-black dark:text-white">1.25</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- AI Insights Card -->
+<div class="bg-container-light dark:bg-container-dark p-4 sm:p-6 rounded-xl border border-border-light dark:border-border-dark mt-6">
+<h3 class="text-xl font-bold text-black dark:text-white mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+                    AI Insights: Comparative Analysis
+                </h3>
+<ul class="space-y-3 text-sm">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-positive mt-1">check_circle</span>
+<div><strong class="font-semibold text-black dark:text-white">Valuation:</strong> GOOGL appears most attractively valued with the lowest P/E ratio (26.15) among the three.</div>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-positive mt-1">check_circle</span>
+<div><strong class="font-semibold text-black dark:text-white">Profitability:</strong> MSFT shows strong profitability with the highest EPS at $10.30.</div>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-negative mt-1">warning</span>
+<div><strong class="font-semibold text-black dark:text-white">Volatility:</strong> AAPL has the highest Beta (1.29), suggesting it's potentially more volatile than the market and its peers in this comparison.</div>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-neutral mt-1">info</span>
+<div><strong class="font-semibold text-black dark:text-white">Income:</strong> For dividend-focused investors, MSFT (0.81%) offers a higher yield than AAPL (0.56%), while GOOGL currently pays no dividend.</div>
+</li>
+</ul>
+</div>
+</div>
+</main>
+</div>
+</body></html>
