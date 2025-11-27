@@ -6,12 +6,13 @@ interface InputProps {
     type?: string;
     placeholder?: string;
     value: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     name?: string;
     error?: string;
     icon?: IconType;
     className?: string;
     required?: boolean;
+    disabled?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -23,7 +24,9 @@ const Input: React.FC<InputProps> = ({
     name,
     error,
     icon: Icon,
-    className = ''
+    className = '',
+    required,
+    disabled
 }) => {
     return (
         <div className={`w-full ${className}`}>
@@ -44,11 +47,14 @@ const Input: React.FC<InputProps> = ({
                     value={value}
                     onChange={onChange}
                     placeholder={placeholder}
+                    required={required}
+                    disabled={disabled}
                     className={`
             w-full bg-dark border rounded-lg py-2.5 px-4 text-slate-200 placeholder-slate-500
             focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all duration-200
             ${Icon ? 'pl-10' : ''}
             ${error ? 'border-danger focus:border-danger' : 'border-slate-700 focus:border-accent'}
+            ${disabled ? 'opacity-50 cursor-not-allowed bg-slate-800' : ''}
           `}
                 />
             </div>
@@ -60,3 +66,4 @@ const Input: React.FC<InputProps> = ({
 };
 
 export default Input;
+

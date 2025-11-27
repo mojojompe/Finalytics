@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { auth, db } from '../firebase';
-import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, sendPasswordResetEmail } from 'firebase/auth';
+import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, sendPasswordResetEmail, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import type { User as FirebaseUser } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import useUserStore from '../stores/useUserStore';
@@ -57,5 +57,24 @@ export const useAuth = () => {
         return sendPasswordResetEmail(auth, email);
     };
 
-    return { loading, login, signup, logout, resetPassword };
+    const googleLogin = async (): Promise<any> => {
+        const provider = new GoogleAuthProvider();
+        const userCredential = await signInWithPopup(auth, provider);
+        const user = userCredential.user;
+
+        // Check if user exists, if not create doc
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        if (!userDoc.exists()) {
+            await setDoc(doc(db, "users", user.uid), {
+                fullName: user.displayName || 'User',
+                email: user.email,
+                createdAt: new Date().toISOString(),
+                settings: { theme: 'dark' }
+            });
+        }
+
+        return user;
+    };
+
+    return { loading, login, signup, logout, resetPassword, googleLogin };
 };

@@ -7,7 +7,7 @@ interface ComparisonTableProps {
 
 interface Metric {
     label: string;
-    key: keyof StockOverview | 'price'; // 'price' might not be in StockOverview yet, adjust as needed
+    key: keyof StockOverview;
     format: (v: number) => string;
 }
 

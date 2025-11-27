@@ -1,0 +1,45 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="glow-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#00F0FF;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#0057FF;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="glow-green" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#00FFA3;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#00F0FF;stop-opacity:1" />
+        </linearGradient>
+        <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <g filter="url(#neon-glow)">
+        <path d="M50 120 V 150" stroke="url(#glow-blue)" stroke-width="2" stroke-linecap="round"/>
+        <rect x="42" y="90" width="16" height="30" rx="2" fill="none" stroke="url(#glow-blue)" stroke-width="2"/>
+        <path d="M45 95 H 55 M 45 105 H 55 M 45 115 H 55" stroke="url(#glow-blue)" stroke-width="1"/>
+        <circle cx="50" cy="90" r="3" fill="url(#glow-blue)"/>
+        <path d="M50 90 V 70" stroke="url(#glow-blue)" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="50" cy="70" r="3" fill="url(#glow-blue)"/>
+
+        <path d="M100 100 V 140" stroke="url(#glow-green)" stroke-width="3" stroke-linecap="round"/>
+        <rect x="88" y="50" width="24" height="50" rx="3" fill="none" stroke="url(#glow-green)" stroke-width="3"/>
+        <path d="M92 60 H 108 M 92 75 H 108 M 92 90 H 108" stroke="url(#glow-green)" stroke-width="1.5"/>
+        <circle cx="100" cy="140" r="4" fill="url(#glow-green)"/>
+        <path d="M100 50 V 20" stroke="url(#glow-green)" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="100" cy="20" r="5" fill="url(#glow-green)"/>
+        
+        <path d="M100 75 L 60 85" stroke="url(#glow-blue)" stroke-width="1" opacity="0.6"/>
+        <path d="M100 75 L 140 65" stroke="url(#glow-blue)" stroke-width="1" opacity="0.6"/>
+
+        <path d="M150 80 V 110" stroke="url(#glow-blue)" stroke-width="2" stroke-linecap="round"/>
+        <rect x="142" y="40" width="16" height="40" rx="2" fill="none" stroke="url(#glow-blue)" stroke-width="2"/>
+        <path d="M145 50 H 155 M 145 60 H 155 M 145 70 H 155" stroke="url(#glow-blue)" stroke-width="1"/>
+        <circle cx="150" cy="80" r="3" fill="url(#glow-blue)"/>
+        <path d="M150 40 V 30" stroke="url(#glow-blue)" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="150" cy="30" r="3" fill="url(#glow-blue)"/>
+    </g>
+</svg>
