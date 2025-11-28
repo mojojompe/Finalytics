@@ -117,12 +117,12 @@ const Newsfeed: React.FC = () => {
                     </div>
                     <div className="flex-1 overflow-hidden relative mask-linear-fade">
                         <div className="flex gap-8 animate-marquee whitespace-nowrap">
-                            {['NVDA +4.5%', 'TSLA -1.2%', 'AAPL +0.8%', 'BTC +2.1%', 'ETH +1.5%', 'AMD +3.2%', 'MSFT +0.5%'].map((item, i) => (
+                            {['NVDA +4.5%', 'TSLA -1.2%', 'AAPL +0.8%', 'BTC +2.1%', 'ETH +1.5%', 'AMD +3.2%', 'MSFT +0.5%', 'TSLA -1.2%', 'AAPL +0.8%', 'BTC +2.1%', 'ETH +1.5%', 'AMD +3.2%', 'MSFT +0.5%', 'TSLA -1.2%', 'AAPL +0.8%', 'BTC +2.1%', 'ETH +1.5%', 'AMD +3.2%', 'MSFT +0.5%'].map((item, i) => (
                                 <span key={i} className={`font-mono font-semibold ${item.includes('+') ? 'text-success' : 'text-danger'}`}>
                                     {item}
                                 </span>
                             ))}
-                            {['NVDA +4.5%', 'TSLA -1.2%', 'AAPL +0.8%', 'BTC +2.1%', 'ETH +1.5%', 'AMD +3.2%', 'MSFT +0.5%'].map((item, i) => (
+                            {['NVDA +4.5%', 'TSLA -1.2%', 'AAPL +0.8%', 'BTC +2.1%', 'ETH +1.5%', 'AMD +3.2%', 'MSFT +0.5%', 'TSLA -1.2%', 'AAPL +0.8%', 'BTC +2.1%', 'ETH +1.5%', 'AMD +3.2%', 'MSFT +0.5%', 'TSLA -1.2%', 'AAPL +0.8%', 'BTC +2.1%', 'ETH +1.5%', 'AMD +3.2%', 'MSFT +0.5%'].map((item, i) => (
                                 <span key={`dup-${i}`} className={`font-mono font-semibold ${item.includes('+') ? 'text-success' : 'text-danger'}`}>
                                     {item}
                                 </span>
