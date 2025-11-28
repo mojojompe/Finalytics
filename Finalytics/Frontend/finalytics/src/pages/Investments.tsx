@@ -8,6 +8,12 @@ const Investments: React.FC = () => {
         { symbol: 'MSFT', shares: 8, avgPrice: 280.50, currentPrice: 310.20, value: 2481.60, return: 10.59 },
         { symbol: 'TSLA', shares: 10, avgPrice: 210.00, currentPrice: 195.50, value: 1955.00, return: -6.90 },
         { symbol: 'NVDA', shares: 5, avgPrice: 420.00, currentPrice: 485.00, value: 2425.00, return: 15.48 },
+        { symbol: 'AMZN', shares: 20, avgPrice: 130.00, currentPrice: 145.00, value: 2900.00, return: 11.54 },
+        { symbol: 'GOOGL', shares: 12, avgPrice: 125.50, currentPrice: 138.75, value: 1665.00, return: 10.56 },
+        { symbol: 'META', shares: 6, avgPrice: 285.00, currentPrice: 315.20, value: 1891.20, return: 10.60 },
+        { symbol: 'AMD', shares: 15, avgPrice: 95.00, currentPrice: 110.50, value: 1657.50, return: 16.32 },
+        { symbol: 'NFLX', shares: 4, avgPrice: 400.00, currentPrice: 445.00, value: 1780.00, return: 11.25 },
+        { symbol: 'COIN', shares: 25, avgPrice: 75.00, currentPrice: 150.00, value: 3750.00, return: 100.00 },
     ];
 
     const totalValue = portfolio.reduce((acc, item) => acc + item.value, 0);

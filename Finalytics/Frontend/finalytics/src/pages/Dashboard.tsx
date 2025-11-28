@@ -34,6 +34,7 @@ const Dashboard: React.FC = () => {
     const { watchlist, addToWatchlist, removeFromWatchlist } = useWatchlist();
     const [selectedTicker, setSelectedTicker] = useState<string>('AAPL');
     const [searchTicker, setSearchTicker] = useState('');
+    const [timeframe, setTimeframe] = useState<string>('1D');
 
     useEffect(() => {
         if (watchlist.length > 0 && !watchlist.includes(selectedTicker)) {
@@ -43,7 +44,7 @@ const Dashboard: React.FC = () => {
         }
     }, [watchlist]);
 
-    const { data, candles, prediction, loading, error } = useStockData(selectedTicker);
+    const { data, candles, prediction, loading, error } = useStockData(selectedTicker, timeframe);
 
     const handleAddTicker = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -56,6 +57,11 @@ const Dashboard: React.FC = () => {
     const chartData = candles.map(c => ({
         x: new Date(c.t * 1000),
         y: [c.o, c.h, c.l, c.c]
+    }));
+
+    const volumeData = candles.map(c => ({
+        x: new Date(c.t * 1000),
+        y: c.v
     }));
 
     // Mock Sentiment Data
@@ -79,7 +85,11 @@ const Dashboard: React.FC = () => {
                     <span className="text-sm text-slate-400 pl-2">Timeframe:</span>
                     <div className="flex gap-1">
                         {['1D', '1W', '1M', '1Y'].map(tf => (
-                            <button key={tf} className={`px-3 py-1 rounded-lg text-xs font-bold transition-colors ${tf === '1M' ? 'bg-accent text-dark' : 'text-slate-400 hover:text-white hover:bg-slate-700'}`}>
+                            <button
+                                key={tf}
+                                onClick={() => setTimeframe(tf)}
+                                className={`px-3 py-1 rounded-lg text-xs font-bold transition-colors ${timeframe === tf ? 'bg-accent text-dark' : 'text-slate-400 hover:text-white hover:bg-slate-700'}`}
+                            >
                                 {tf}
                             </button>
                         ))}
@@ -140,7 +150,7 @@ const Dashboard: React.FC = () => {
                                     {error}
                                 </div>
                             ) : (
-                                <CandlestickChart data={chartData} height="100%" />
+                                <CandlestickChart data={chartData} volumeData={volumeData} height={350} />
                             )}
                         </div>
                     </div>

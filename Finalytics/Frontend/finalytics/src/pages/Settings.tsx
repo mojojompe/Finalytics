@@ -5,8 +5,9 @@ import Button from '../components/UI/Button';
 import Input from '../components/UI/Input';
 import { FaUser, FaEnvelope, FaLock, FaSave, FaCog, FaDesktop, FaChartArea, FaPalette } from 'react-icons/fa';
 import useSettingsStore from '../stores/useSettingsStore';
-import { doc, updateDoc } from 'firebase/firestore';
-import { db } from '../firebase';
+import { doc, updateDoc, setDoc } from 'firebase/firestore';
+import { db, auth } from '../firebase';
+import { updateProfile } from 'firebase/auth';
 
 const Settings: React.FC = () => {
     const { user, setUser } = useUserStore();
@@ -19,33 +20,48 @@ const Settings: React.FC = () => {
     } = useSettingsStore();
 
     const [fullName, setFullName] = useState('');
+    const [dob, setDob] = useState('');
+    const [address, setAddress] = useState('');
+    const [phone, setPhone] = useState('');
     const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState('');
-    const [error, setError] = useState('');
+    const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
     useEffect(() => {
-        if (user?.fullName) {
-            setFullName(user.fullName);
+        if (user) {
+            setFullName(user.fullName || '');
+            // In a real app, we would fetch extended profile data here
         }
     }, [user]);
 
     const handleUpdateProfile = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!user) return;
+        const currentUser = auth.currentUser;
+        if (!currentUser || !user) return;
 
         setLoading(true);
-        setMessage('');
-        setError('');
+        setMessage(null);
 
         try {
-            await updateDoc(doc(db, "users", user.uid), {
-                fullName
-            });
-            setUser({ ...user, fullName });
-            setMessage('Profile updated successfully');
-        } catch (err) {
-            setError('Failed to update profile');
-            console.error(err);
+            // Update auth profile
+            await updateProfile(currentUser, { displayName: fullName });
+
+            // Update Firestore document with extended info
+            const userRef = doc(db, 'users', user.uid);
+            await setDoc(userRef, {
+                fullName: fullName, // Store as fullName to match store
+                dob,
+                address,
+                phone,
+                updatedAt: new Date()
+            }, { merge: true });
+
+            // Update local store
+            setUser({ ...user, fullName: fullName });
+
+            setMessage({ type: 'success', text: 'Profile updated successfully!' });
+        } catch (error) {
+            console.error(error);
+            setMessage({ type: 'error', text: 'Failed to update profile.' });
         } finally {
             setLoading(false);
         }
@@ -55,9 +71,9 @@ const Settings: React.FC = () => {
         if (!user?.email) return;
         try {
             await resetPassword(user.email);
-            setMessage('Password reset email sent to ' + user.email);
+            setMessage({ type: 'success', text: 'Password reset email sent to ' + user.email });
         } catch (err) {
-            setError('Failed to send reset email');
+            setMessage({ type: 'error', text: 'Failed to send reset email' });
         }
     };
 
@@ -159,25 +175,43 @@ const Settings: React.FC = () => {
                     </h2>
 
                     {message && (
-                        <div className="bg-success/10 text-success p-4 rounded-lg mb-6 border border-success/20">
-                            {message}
-                        </div>
-                    )}
-
-                    {error && (
-                        <div className="bg-danger/10 text-danger p-4 rounded-lg mb-6 border border-danger/20">
-                            {error}
+                        <div className={`p-4 rounded-lg mb-6 border ${message.type === 'success' ? 'bg-success/10 text-success border-success/20' : 'bg-danger/10 text-danger border-danger/20'}`}>
+                            {message.text}
                         </div>
                     )}
 
                     <form onSubmit={handleUpdateProfile} className="space-y-6 max-w-xl">
-                        <Input
-                            label="Full Name"
-                            value={fullName}
-                            onChange={(e) => setFullName(e.target.value)}
-                            icon={FaUser}
-                            placeholder="Enter your name"
-                        />
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <Input
+                                label="Full Name"
+                                value={fullName}
+                                onChange={(e) => setFullName(e.target.value)}
+                                icon={FaUser}
+                                placeholder="Enter your name"
+                            />
+                            <Input
+                                label="Date of Birth"
+                                type="date"
+                                value={dob}
+                                onChange={(e) => setDob(e.target.value)}
+                                icon={FaUser}
+                            />
+                            <Input
+                                label="Address"
+                                value={address}
+                                onChange={(e) => setAddress(e.target.value)}
+                                icon={FaUser}
+                                placeholder="Enter your address"
+                            />
+                            <Input
+                                label="Phone Number"
+                                type="tel"
+                                value={phone}
+                                onChange={(e) => setPhone(e.target.value)}
+                                icon={FaUser}
+                                placeholder="Enter your phone number"
+                            />
+                        </div>
 
                         <Input
                             label="Email Address"

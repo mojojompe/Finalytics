@@ -124,10 +124,10 @@ const Login: React.FC = () => {
                     </blockquote>
                     <div className="flex items-center gap-4">
                         <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center text-accent font-bold">
-                            JD
+                            <img src="/logo.svg" alt="Finalytics"/>
                         </div>
                         <div>
-                            <div className="font-bold">John Doe</div>
+                            <div className="font-bold">Olamilekan Ife</div>
                             <div className="text-slate-400 text-sm">Professional Trader</div>
                         </div>
                     </div>

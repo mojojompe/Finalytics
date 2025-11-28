@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import AOS from 'aos';
+
 import { useAuth } from './hooks/useAuth';
 import useUserStore from './stores/useUserStore';
 
@@ -9,7 +9,7 @@ import Newsfeed from './pages/Newsfeed';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ForgotPassword from './pages/ForgotPassword';
-// import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/Dashboard';
 import Comparison from './pages/Comparison';
 import Settings from './pages/Settings';
 import Legal from './pages/Legal';
@@ -73,16 +73,24 @@ const PrivateLayout = ({ children }: { children: React.ReactNode }) => {
     );
 };
 
+import useSettingsStore from './stores/useSettingsStore';
+
+// ... imports
+
 function App() {
     const { loading } = useAuth(); // Initialize auth listener
+    const { accentColor } = useSettingsStore();
 
     useEffect(() => {
+        // Apply accent color to CSS variable
+        document.documentElement.style.setProperty('--color-accent', accentColor);
+
         // AOS.init({
         //     duration: 1000,
         //     once: true,
         //     easing: 'ease-in-out',
         // });
-    }, []);
+    }, [accentColor]);
 
     if (loading) {
         return (
@@ -111,13 +119,13 @@ function App() {
                     <Route path="/coming-soon" element={<ComingSoon />} />
 
                     {/* Protected Routes */}
-                    {/* <Route path="/dashboard" element={
+                    <Route path="/dashboard" element={
                         <ProtectedRoute>
                             <PrivateLayout>
                                 <Dashboard />
                             </PrivateLayout>
                         </ProtectedRoute>
-                    } /> */}
+                    } />
                     <Route path="/comparison" element={
                         <ProtectedRoute>
                             <PrivateLayout>

@@ -93,6 +93,58 @@ const MOCK_NEWS: NewsItem[] = [
         publishedAt: new Date(Date.now() - 18000000).toISOString(),
         keywords: "Apple, VR, Tech, Gadgets",
         language: "en"
+    },
+    {
+        uuid: '7',
+        title: "Gold Prices Hit Record Highs as Investors Seek Safe Havens",
+        description: "Spot gold surged past $2,400 per ounce as central bank buying and geopolitical uncertainty drive demand for the precious metal.",
+        snippet: "Analysts suggest that the rally could continue as long as inflationary pressures persist and global instability remains high.",
+        url: "#",
+        imageUrl: "https://images.unsplash.com/photo-1610375461246-83df859d849d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+        source: "Kitco",
+        category: "Commodities",
+        publishedAt: new Date(Date.now() - 21600000).toISOString(),
+        keywords: "Gold, Commodities, Investing",
+        language: "en"
+    },
+    {
+        uuid: '8',
+        title: "Euro Falls Against Dollar as ECB Hints at Early Rate Cuts",
+        description: "The Euro dropped 0.5% against the USD after ECB President Lagarde suggested that rate cuts could come sooner than the Fed's.",
+        snippet: "Diverging monetary policies between the Eurozone and the US are creating new opportunities for forex traders.",
+        url: "#",
+        imageUrl: "https://images.unsplash.com/photo-1580519542036-c47de6196ba5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+        source: "ForexLive",
+        category: "Forex",
+        publishedAt: new Date(Date.now() - 25200000).toISOString(),
+        keywords: "Forex, Euro, USD, ECB",
+        language: "en"
+    },
+    {
+        uuid: '9',
+        title: "SpaceX Successfully Launches Next-Gen Starship",
+        description: "SpaceX has achieved a major milestone with the successful orbital test flight of its massive Starship rocket, paving the way for lunar missions.",
+        snippet: "The launch marks a significant step forward for commercial space travel and satellite deployment capabilities.",
+        url: "#",
+        imageUrl: "https://images.unsplash.com/photo-1517976487492-5750f3195933?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+        source: "SpaceNews",
+        category: "Technology",
+        publishedAt: new Date(Date.now() - 28800000).toISOString(),
+        keywords: "SpaceX, Tech, Space",
+        language: "en"
+    },
+    {
+        uuid: '10',
+        title: "Global Supply Chain Woes Ease, Boosting Manufacturing",
+        description: "New data shows that shipping costs have normalized and delivery times have improved, providing relief to manufacturers worldwide.",
+        snippet: "The easing of supply chain bottlenecks is expected to help lower inflation in goods sectors across major economies.",
+        url: "#",
+        imageUrl: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+        source: "Logistics World",
+        category: "Economy",
+        publishedAt: new Date(Date.now() - 32400000).toISOString(),
+        keywords: "Economy, Supply Chain, Manufacturing",
+        language: "en"
     }
 ];
 
@@ -106,8 +158,12 @@ export const getMarketNews = async (filter: string = 'general'): Promise<NewsIte
         // if (!response.ok) throw new Error('Failed to fetch news');
         // return await response.json();
 
-        // For now, return rich mock data
-        return MOCK_NEWS;
+        // Filter mock data
+        if (filter === 'general' || filter === 'all') {
+            return MOCK_NEWS;
+        }
+
+        return MOCK_NEWS.filter(item => item.category?.toLowerCase() === filter.toLowerCase());
     } catch (error) {
         console.error("Error fetching news:", error);
         return MOCK_NEWS; // Fallback to mock data on error
